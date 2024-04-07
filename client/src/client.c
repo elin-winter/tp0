@@ -93,7 +93,7 @@ void leer_consola(t_log* logger)
 	}
 
 	free(leido);
-	exit(-1);
+	exit(0);
 
 }
 
