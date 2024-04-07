@@ -62,7 +62,7 @@ t_log* iniciar_logger(void)
 		// No se creó el log, terminar el programa
 		printf ("No se ha podido crear el logger. \n");
 		log_error(logger, "Could not create logger");
-		exit(-1);
+		exit(1);
 	}
 
 	return nuevo_logger;
@@ -76,7 +76,7 @@ t_config* iniciar_config(void)
 		// No se creó la config, terminar el programa
 		printf ("No se ha podido crear el config. \n");
 		log_error(logger, "Could not create config");
-		exit(-1);
+		exit(2);
 	}
 
 
