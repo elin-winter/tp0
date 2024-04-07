@@ -1,4 +1,5 @@
 #include "client.h"
+#include <readline/readline.h>
 
 int main(void)
 {
@@ -18,7 +19,7 @@ int main(void)
 
 	if (logger == NULL) {
 		// No se creó el log, terminar el programa
-		return -1;
+		exit(-1);
 	}
 	
 	log_info(logger, "Hola! Soy un Log. \n");
@@ -30,7 +31,7 @@ int main(void)
 	if (config == NULL) {
 		// No se creó la config, terminar el programa
 		log_error(logger, "Could not create config");
-		return -1;
+		exit(-1);
 	}
 
 	// Usando el config creado previamente, leemos los valores del config y los 
@@ -81,15 +82,18 @@ t_config* iniciar_config(void)
 
 void leer_consola(t_log* logger)
 {
-	char* leido;
+	char* leido = readline("> ");
+	
+	// Se leen y loguean todas las líneas ingresadas a consola hasta llegar a una vacía, allí termina el programa
+	
+	while (strcmp(leido, "") != 0) {
+		log_info(logger, leido);
+		free(leido);
+		leido = readline("> ");
+	}
 
-	// La primera te la dejo de yapa
-	leido = readline("> ");
-
-	// El resto, las vamos leyendo y logueando hasta recibir un string vacío
-
-
-	// ¡No te olvides de liberar las lineas antes de regresar!
+	free(leido);
+	exit(-1);
 
 }
 
@@ -109,7 +113,6 @@ void paquete(int conexion)
 void terminar_programa(int conexion, t_log* logger, t_config* config)
 {
 	log_destroy(logger);
-
-	/* Y por ultimo, hay que liberar lo que utilizamos (conexion, log y config) 
-	  con las funciones de las commons y del TP mencionadas en el enunciado */
+	config_remove_key(config, "CLAVE");
+	config_destroy(config);
 }
