@@ -16,23 +16,11 @@ int main(void)
 	/* ---------------- LOGGING ---------------- */
 
 	logger = iniciar_logger();
-
-	if (logger == NULL) {
-		// No se creó el log, terminar el programa
-		exit(-1);
-	}
-	
 	log_info(logger, "Hola! Soy un Log. \n");
 
 	/* ---------------- ARCHIVOS DE CONFIGURACION ---------------- */
 
 	config = iniciar_config();
-
-	if (config == NULL) {
-		// No se creó la config, terminar el programa
-		log_error(logger, "Could not create config");
-		exit(-1);
-	}
 
 	// Usando el config creado previamente, leemos los valores del config y los 
 	// dejamos en las variables 'ip', 'puerto' y 'valor'
@@ -70,14 +58,29 @@ t_log* iniciar_logger(void)
 {
 	t_log* nuevo_logger = log_create("tp0.log", "LOG", true, LOG_LEVEL_INFO);
 
+		if (logger == NULL) {
+		// No se creó el log, terminar el programa
+		printf ("No se ha podido crear el logger. \n");
+		log_error(logger, "Could not create logger");
+		exit(-1);
+	}
+
 	return nuevo_logger;
 }
 
 t_config* iniciar_config(void)
 {
-	t_config* nuevo_config;
+	t_config* nuevo_config = config_create("cliente.config");
 
-	return nuevo_config = config_create("cliente.config");;
+	if (config == NULL) {
+		// No se creó la config, terminar el programa
+		printf ("No se ha podido crear el config. \n");
+		log_error(logger, "Could not create config");
+		exit(-1);
+	}
+
+
+	return nuevo_config;
 }
 
 void leer_consola(t_log* logger)
