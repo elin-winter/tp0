@@ -96,7 +96,6 @@ void leer_consola(t_log* logger)
 	}
 
 	free(leido);
-	exit(0);
 }
 
 void paquete(int conexion)
