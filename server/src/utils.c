@@ -15,8 +15,8 @@ int iniciar_servidor(void)
 
 	// Creación socket_servidor de escucha
 	int socket_servidor = socket(server_info->ai_family,
-                    server_info->ai_socktype,
-                    server_info->ai_protocol);
+			                     server_info->ai_socktype,
+ 			                     server_info->ai_protocol);
 
 	// Asociación a un puerto
 	bind(socket_servidor, servinfo->ai_addr, servinfo->ai_addrlen);
@@ -32,10 +32,7 @@ int iniciar_servidor(void)
 
 int esperar_cliente(int socket_servidor)
 {
-	// Quitar esta línea cuando hayamos terminado de implementar la funcion
-	assert(!"no implementado!");
-
-	// Aceptamos un nuevo cliente
+	// Aceptar un nuevo cliente
 	int socket_cliente = accept(socket_servidor, NULL, NULL);
 	log_info(logger, "Se conecto un cliente!");
 
