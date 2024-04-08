@@ -90,14 +90,13 @@ void leer_consola(t_log* logger)
 	// Se leen y loguean todas las líneas ingresadas a consola hasta llegar a una vacía, allí termina el programa
 	
 	while (strcmp(leido, "") != 0) {
-		log_info(logger, leido);
+		log_info("%s", logger, leido);
 		free(leido);
 		leido = readline("> ");
 	}
 
 	free(leido);
 	exit(0);
-
 }
 
 void paquete(int conexion)
