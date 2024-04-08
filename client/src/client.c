@@ -92,7 +92,6 @@ void leer_consola(t_log* logger)
 	
 	while (strcmp(leido, "") != 0) {
 		log_info("%s", logger, leido);
-		free(leido);
 		leido = readline("> ");
 	}
 
