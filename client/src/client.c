@@ -100,7 +100,7 @@ void leer_consola(t_log* logger)
 
 void paquete(int conexion)
 {
-	char* leido = readline("> ");;
+	char* leido = readline("> ");
 	t_paquete* paquete = crear_paquete();
 
 	// Paso los comandos de consola al paquete
